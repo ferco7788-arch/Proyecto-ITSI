@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITSI - Bachillerato Técnico Vocacional</title>
+    
+    <!-- ==========================================
+         BOOTSTRAP 5 CDN (Herramienta de diseño)
+         ========================================== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- ==========================================
+         ESTILOS PERSONALIZADOS (Colores del logo)
+         ========================================== -->
+    <style>
+        :root {
+            /* Colores extraídos del logo ITSI */
+            --color-azul-oscuro: #1a237e;
+            --color-azul-claro: #0d47a1;
+            --color-amarillo: #FFD700;
+            --color-amarillo-oscuro: #FFC107;
+            --color-plateado: #C0C0C0;
+            --color-gris: #A9A9A9;
+            --color-blanco: #FFFFFF;
+            --color-rojo: #DC143C;
+        }
+        
+        /* Estilo general del cuerpo */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        /* ==========================================
+           ESTILOS DEL NAVBAR (Barra de navegación)
+           ========================================== */
+        .navbar-itsi {
+            background: linear-gradient(135deg, var(--color-azul-oscuro), var(--color-azul-claro));
+        }
+        
+        .navbar-brand {
+            color: var(--color-amarillo) !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            color: var(--color-blanco) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--color-amarillo) !important;
+        }
+        
+        /* ==========================================
+           ESTILOS DEL CARRUSEL
+           ========================================== */
+        .carousel-item {
+            height: 400px;
+        }
+        
+        .carousel-item img {
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .carousel-caption {
+            background: rgba(26, 35, 126, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        /* ==========================================
+           ESTILOS DE LA SECCIÓN DE DESCRIPCIÓN
+           ========================================== */
+        .seccion-descripcion {
+            background: linear-gradient(180deg, var(--color-blanco) 0%, #e8e8e8 100%);
+            padding: 60px 0;
+        }
+        
+        .titulo-seccion {
+            color: var(--color-azul-oscuro);
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .card-descripcion {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        
+        .card-descripcion:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header-itsi {
+            background: linear-gradient(135deg, var(--color-azul-oscuro), var(--color-azul-claro));
+            color: var(--color-blanco);
+            font-weight: bold;
+            border-radius: 15px 15px 0 0 !important;
+        }
+        
+        .icono-card {
+            font-size: 3rem;
+            color: var(--color-amarillo);
+            margin-bottom: 15px;
+        }
+        
+        /* ==========================================
+           ESTILOS DEL FORMULARIO
+           ========================================== */
+        .seccion-formulario {
+            background: linear-gradient(135deg, var(--color-azul-oscuro), var(--color-azul-claro));
+            padding: 60px 0;
+            color: var(--color-blanco);
+        }
+        
+        .form-container {
+            background: var(--color-blanco);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .form-label {
+            color: var(--color-azul-oscuro);
+            font-weight: 600;
+        }
+        
+        .btn-enviar {
+            background: linear-gradient(135deg, var(--color-amarillo), var(--color-amarillo-oscuro));
+            color: var(--color-azul-oscuro);
+            font-weight: bold;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn-enviar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            background: linear-gradient(135deg, var(--color-amarillo-oscuro), var(--color-amarillo));
+        }
+        
+        /* ==========================================
+           ESTILOS DEL FOOTER
+           ========================================== */
+        .footer-itsi {
+            background: var(--color-azul-oscuro);
+            color: var(--color-blanco);
+            padding: 30px 0;
+        }
+        
+        .footer-text {
+            color: var(--color-plateado);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =======================================================
+         NAVBAR - Barra de navegación con 3 enlaces editables
+         ======================================================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-itsi sticky-top">
+        <div class="container">
+            <!-- Logo/nombre del bachillerato -->
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-cpu"></i> ITSI
+            </a>
+            
+            <!-- Botón de menú para móviles -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Enlaces de navegación (puedes agregar más aquí) -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Enlace 1: Inicio -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <!-- Enlace 2: Nosotros -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#nosotros">Nosotros</a>
+                    </li>
+                    <!-- Enlace 3: Contacto -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                    <!-- Puedes agregar más enlaces aquí copiando el bloque de arriba -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =======================================================
+         CARRUSEL DE IMÁGENES - Espacio para mostrar fotos
+         ======================================================= -->
+    <section id="inicio">
+        <div id="carruselPrincipal" class="carousel slide" data-bs-ride="carousel">
+            <!-- Indicadores (puntitos abajo) -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carruselPrincipal" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#carruselPrincipal" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carruselPrincipal" data-bs-slide-to="2"></button>
+            </div>
+            
+            <!-- Imágenes del carrusel -->
+            <div class="carousel-inner">
+                <!-- Imagen 1 -->
+                <div class="carousel-item active">
+                    <!-- Reemplaza la URL con tus imágenes -->
+                    <img src="https://via.placeholder.com/1200x400/1a237e/FFFFFF?text=ITSI+-+Infraestructura+Tecnológica" class="d-block w-100" alt="ITSI Tecnología">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Infraestructura Tecnológica</h5>
+                        <p>Formando profesionales en tecnología</p>
+                    </div>
+                </div>
+                
+                <!-- Imagen 2 -->
+                <div class="carousel-item">
+                    <img src="https://via.placeholder.com/1200x400/0d47a1/FFFFFF?text=Servicios+Informáticos" class="d-block w-100" alt="Servicios Informáticos">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Servicios Informáticos</h5>
+                        <p>Excelencia en educación técnica</p>
+                    </div>
+                </div>
+                
+                <!-- Imagen 3 -->
+                <div class="carousel-item">
+                    <img src="https://via.placeholder.com/1200x400/FFD700/1a237e?text=Bachillerato+Técnico+Vocacional" class="d-block w-100" alt="Bachillerato Técnico">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Bachillerato Técnico Vocacional</h5>
+                        <p>C.E. INSA - Tu futuro empieza aquí</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botones de navegación (flechas) -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carruselPrincipal" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carruselPrincipal" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- =======================================================
+         SECCIÓN DE DESCRIPCIÓN - Información del bachillerato
+         ======================================================= -->
+    <section id="nosotros" class="seccion-descripcion">
+        <div class="container">
+            <h2 class="titulo-seccion">
+                <i class="bi bi-info-circle"></i> ¿Qué es el Bachillerato ITSI?
+            </h2>
+            
+            <div class="row">
+                <!-- Columna 1: Descripción general -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card card-descripcion">
+                        <div class="card-header card-header-itsi">
+                            <i class="bi bi-book"></i> Nuestro Programa
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                El <strong>Bachillerato Técnico Vocacional en Infraestructura Tecnológica y Servicios Informáticos (ITSI)</strong> 
+                                es un programa educativo que forma estudiantes en las áreas de tecnología, redes, 
+                                mantenimiento de equipos y servicios informáticos.
+                            </p>
+                            <p class="card-text">
+                                Nuestros egresados están preparados para:
+                            </p>
+                            <ul>
+                                <li>Instalar y configurar redes de computadoras</li>
+                                <li>Realizar mantenimiento de hardware y software</li>
+                                <li>Brindar soporte técnico informático</li>
+                                <li>Administrar sistemas y servicios informáticos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Columna 2: Características -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card card-descripcion">
+                        <div class="card-header card-header-itsi">
+                            <i class="bi bi-star"></i> Características
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="text-center">
+                                        <i class="bi bi-laptop icono-card"></i>
+                                        <h6>Práctica Intensiva</h6>
+                                        <p class="small text-muted">Aprendizaje hands-on</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="text-center">
+                                        <i class="bi bi-people icono-card"></i>
+                                        <h6>Docentes Expertos</h6>
+                                        <p class="small text-muted">Profesionales del área</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="text-center">
+                                        <i class="bi bi-tools icono-card"></i>
+                                        <h6>Laboratorios</h6>
+                                        <p class="small text-muted">Equipos modernos</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="text-center">
+                                        <i class="bi bi-certificate icono-card"></i>
+                                        <h6>Certificación</h6>
+                                        <p class="small text-muted">Título reconocido</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Breve descripción adicional -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="alert alert-info" role="alert">
+                        <i class="bi bi-lightbulb"></i>
+                        <strong>¿Por qué elegir ITSI?</strong> 
+                        Porque combinamos teoría y práctica para formarte como un profesional competente 
+                        en el área de infraestructura tecnológica y servicios informáticos. ¡Tu futuro en tecnología empieza aquí!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================================================
+         FORMULARIO DE SOLICITUD DE CITA - Para inscripciones
+         ======================================================= -->
+    <section id="contacto" class="seccion-formulario">
+        <div class="container">
+            <h2 class="text-center mb-5">
+                <i class="bi bi-calendar-check"></i> Solicita tu Cita de Inscripción
+            </h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-container">
+                        <form id="formularioCita">
+                            <!-- Nombre completo -->
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">
+                                    <i class="bi bi-person"></i> Nombre Completo
+                                </label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Escribe tu nombre completo" required>
+                            </div>
+                            
+                            <!-- Correo electrónico -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">
+                                    <i class="bi bi-envelope"></i> Correo Electrónico
+                                </label>
+                                <input type="email" class="form-control" id="email" placeholder="ejemplo@correo.com" required>
+                            </div>
+                            
+                            <!-- Teléfono -->
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">
+                                    <i class="bi bi-telephone"></i> Teléfono
+                                </label>
+                                <input type="tel" class="form-control" id="telefono" placeholder="Tu número de teléfono" required>
+                            </div>
+                            
+                            <!-- Fecha preferida -->
+                            <div class="mb-3">
+                                <label for="fecha" class="form-label">
+                                    <i class="bi bi-calendar"></i> Fecha Preferida
+                                </label>
+                                <input type="date" class="form-control" id="fecha" required>
+                            </div>
+                            
+                            <!-- Mensaje adicional -->
+                            <div class="mb-4">
+                                <label for="mensaje" class="form-label">
+                                    <i class="bi bi-chat-text"></i> Mensaje Adicional (opcional)
+                                </label>
+                                <textarea class="form-control" id="mensaje" rows="3" placeholder="¿Alguna pregunta o comentario?"></textarea>
+                            </div>
+                            
+                            <!-- Botón de enviar -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-enviar">
+                                    <i class="bi bi-send"></i> Enviar Solicitud
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================================================
+         FOOTER - Pie de página
+         ======================================================= -->
+    <footer class="footer-itsi">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <h5 class="text-warning">ITSI</h5>
+                    <p class="footer-text mb-0">
+                        Bachillerato Técnico Vocacional en<br>
+                        Infraestructura Tecnológica y Servicios Informáticos
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <p class="footer-text mb-0">
+                        <i class="bi bi-building"></i> C.E. INSA<br>
+                        © 2024 Todos los derechos reservados
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =======================================================
+         SCRIPTS DE BOOTSTRAP 5 (Funcionalidad interactiva)
+         ======================================================= -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script para manejar el formulario (opcional) -->
+    <script>
+        // Cuando se envía el formulario
+        document.getElementById('formularioCita').addEventListener('submit', function(e) {
+            e.preventDefault(); // Evita que la página se recargue
+            
+            // Obtiene los valores del formulario
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const telefono = document.getElementById('telefono').value;
+            const fecha = document.getElementById('fecha').value;
+            
+            // Muestra un mensaje de confirmación
+            alert('¡Gracias ' + nombre + '!\n\nTu solicitud ha sido recibida.\nTe contactaremos al: ' + telefono + '\nPara el día: ' + fecha);
+            
+            // Limpia el formulario
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
